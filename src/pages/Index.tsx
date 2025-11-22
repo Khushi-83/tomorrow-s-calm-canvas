@@ -3,6 +3,9 @@ import { TaskCard, Task } from "@/components/TaskCard";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
+import { StreakCalendar } from "@/components/StreakCalendar";
+import { ProgressStats } from "@/components/ProgressStats";
+import { useTaskTracking } from "@/hooks/useTaskTracking";
 
 const DEFAULT_ROUTINE: Task[] = [
   {
@@ -46,6 +49,8 @@ const DEFAULT_ROUTINE: Task[] = [
 const Index = () => {
   const [routineTasks, setRoutineTasks] = useState<Task[]>(DEFAULT_ROUTINE);
   const [tomorrowTasks, setTomorrowTasks] = useState<Task[]>([]);
+  const { completionData, getTodayStats } = useTaskTracking(routineTasks, tomorrowTasks);
+  const { completedToday, totalToday } = getTodayStats();
 
   const colors: Task["color"][] = ["lavender", "mint", "peach", "sky"];
 
@@ -97,6 +102,20 @@ const Index = () => {
             Plan your day with clarity and focus
           </p>
         </header>
+
+        {/* Progress Statistics */}
+        <section className="mb-12">
+          <ProgressStats 
+            completionData={completionData}
+            totalTasksToday={totalToday}
+            completedToday={completedToday}
+          />
+        </section>
+
+        {/* Streak Calendar */}
+        <section className="mb-12">
+          <StreakCalendar completionData={completionData} />
+        </section>
 
         {/* Default Daily Routine Section */}
         <section className="mb-16">
