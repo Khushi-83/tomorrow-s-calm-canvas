@@ -66,7 +66,7 @@ export const TaskCard = ({ task, onUpdate, onDelete }: TaskCardProps) => {
                 value={task.title}
                 onChange={(e) => onUpdate({ ...task, title: e.target.value })}
                 onBlur={() => setIsEditing(false)}
-                className="border-0 bg-white/50 text-lg font-medium shadow-none focus-visible:ring-1"
+                className="border-0 bg-white/50 dark:bg-white/10 text-foreground text-lg font-medium shadow-none focus-visible:ring-1"
                 autoFocus
               />
             ) : (
@@ -113,7 +113,7 @@ export const TaskCard = ({ task, onUpdate, onDelete }: TaskCardProps) => {
           value={task.duration || ""}
           onChange={(e) => onUpdate({ ...task, duration: e.target.value })}
           placeholder="Duration (optional)"
-          className="border-0 bg-white/50 text-sm shadow-none focus-visible:ring-1"
+          className="border-0 bg-white/50 dark:bg-white/10 text-foreground text-sm shadow-none focus-visible:ring-1"
         />
 
         {/* Notes Textarea */}
@@ -121,7 +121,7 @@ export const TaskCard = ({ task, onUpdate, onDelete }: TaskCardProps) => {
           value={task.notes || ""}
           onChange={(e) => onUpdate({ ...task, notes: e.target.value })}
           placeholder="Add notes..."
-          className="min-h-[80px] resize-none border-0 bg-white/50 text-sm shadow-none focus-visible:ring-1"
+          className="min-h-[80px] resize-none border-0 bg-white/50 dark:bg-white/10 text-foreground text-sm shadow-none focus-visible:ring-1"
         />
 
         {/* Urgency Slider */}
